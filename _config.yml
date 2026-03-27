@@ -3,4 +3,3 @@ title: 我的博客
 description: 技术博客
 baseurl: "/mylovelyblog"
 url: "https://xkai-site.github.io"
-permalink: /posts/:title/

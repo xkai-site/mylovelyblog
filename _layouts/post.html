@@ -11,14 +11,18 @@ layout: default
   .back-link { 
     display: inline-block; 
     margin-bottom: 1rem; 
-    color: #667eea; 
+    color: #4f46e5; 
     text-decoration: none;
   }
   .back-link:hover { text-decoration: underline; }
+  .back-link:focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+  }
 </style>
 
 <div class="post-container">
-  <a href="/" class="back-link">← 返回首页</a>
+  <a href="{{ site.baseurl }}/" class="back-link">← 返回首页</a>
   
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>

@@ -2,26 +2,50 @@
 layout: default
 ---
 <style>
-  .post-wrapper { max-width: 800px; margin: 0 auto; padding: 2rem; }
-  .post-header { margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
-  .post-title { margin: 0 0 0.5rem 0; font-size: 1.75rem; }
-  .post-date { color: #999; font-size: 0.9rem; margin: 0; }
-  .post-content { line-height: 1.8; }
-  .post-content p { margin: 1rem 0; }
-  .back-link { color: #666; text-decoration: none; display: inline-block; margin-bottom: 1rem; }
-  .back-link:hover { color: #333; }
+  /* 重置 section 内的 header 样式 */
+  section > header.post-header {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    float: none !important;
+    margin: 2rem 0 !important;
+    border-bottom: 1px solid #eee !important;
+    padding-bottom: 1rem !important;
+    background: transparent !important;
+  }
+  .post-title {
+    margin: 0 0 0.5rem 0 !important;
+    font-size: 1.75rem !important;
+    font-weight: bold !important;
+    position: static !important;
+  }
+  .post-date {
+    color: #999 !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    position: static !important;
+  }
+  .post-content {
+    line-height: 1.8 !important;
+    margin-top: 1rem !important;
+  }
+  .back-link {
+    color: #666 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin: 1rem 0 !important;
+  }
 </style>
 
-<div class="post-wrapper">
+<section>
   <a class="back-link" href="{{ site.baseurl }}/">← 返回首页</a>
 
-  <article>
-    <header class="post-header">
-      <h1 class="post-title">{{ page.title }}</h1>
-      <p class="post-date">{{ page.date | date: "%Y-%m-%d" }}</p>
-    </header>
-    <div class="post-content">
-      {{ content }}
-    </div>
-  </article>
-</div>
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-date">{{ page.date | date: "%Y-%m-%d" }}</p>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</section>

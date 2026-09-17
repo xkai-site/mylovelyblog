@@ -74,22 +74,7 @@ Typora 将 `/mylovelyblog/...` 映射到仓库父目录下的 `mylovelyblog/...`
 
 修改标题或分类不影响新文章的 URL；修改 `date` 或 `slug` 会改变 URL。旧文章 URL 的标题段来自原文件名，不是显示标题。不要随意重命名旧文章文件。
 
-## 4. 本地能做的检查（不需要 Ruby）
-
-```sh
-node --test scripts/new-post.test.mjs scripts/check-site.test.mjs scripts/theme.test.mjs
-node scripts/check-source.mjs
-```
-
-如果之后取得真实的 Jekyll 构建产物，还可以运行：
-
-```sh
-node scripts/check-site.mjs --site _site
-```
-
-这个命令检查内部页面、图片、锚点及开发文件排除，不负责构建。不需要为了它安装本地 Jekyll。
-
-## 5. 首次上线验收
+## 4. 首次上线验收
 
 请参考 [验收清单](acceptance.md)，包含模式切换、手机排版、旧文章／图片、分类导航与 Typora 图片粘贴闭环。
 

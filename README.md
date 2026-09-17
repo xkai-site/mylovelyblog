@@ -24,19 +24,6 @@ node scripts/new-post.mjs --title "新的一篇笔记" --id new-note --category 
 
 按照 [验收清单](docs/acceptance.md) 检查 Actions、网页与图片。不需要安装 Ruby 或启动 Docker。
 
-## 本地检查
-
-```sh
-node --test scripts/new-post.test.mjs scripts/check-site.test.mjs scripts/theme.test.mjs
-node scripts/check-source.mjs
-```
-
-静态检查不等于 Jekyll 构建或浏览器测试。如果已有真实构建产物，可以另外运行：
-
-```sh
-node scripts/check-site.mjs --site _site
-```
-
 ## 主要目录
 
 | 路径 | 内容 |
@@ -49,4 +36,4 @@ node scripts/check-site.mjs --site _site
 | `assets/js/` | 配色切换、目录、图片与表格增强 |
 | `scripts/`、`templates/` | 可选的本地写作辅助工具 |
 
-模板、脚本、说明和计划文件已在 `_config.yml` 中排除，不作为网站资源发布。未改变远程工作流。
+模板、脚本和说明文件已在 `_config.yml` 中排除，不作为网站资源发布。未改变远程工作流。

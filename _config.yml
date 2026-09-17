@@ -20,10 +20,6 @@ defaults:
     values:
       layout: post
 exclude:
-  - PLAN.md
-  - task_plan.md
-  - findings.md
-  - progress.md
   - docs
   - templates
   - scripts

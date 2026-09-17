@@ -1,0 +1,8 @@
+# Optional local output; publishing still uses the existing GitHub workflow.
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+.DS_Store
+Thumbs.db

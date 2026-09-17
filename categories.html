@@ -1,0 +1,34 @@
+---
+layout: default
+title: 文章分类
+nav: categories
+permalink: /categories/
+---
+<header class="page-heading">
+  <p class="eyebrow">EXPLORE BY CATEGORY</p>
+  <h1>不同侧面的我</h1>
+  <p>技术里的探索，生活里的片段，还有偶尔冒出的想法。</p>
+</header>
+{% assign categories = site.categories | sort %}
+{% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
+<nav class="topic-index" aria-label="分类索引">
+  {% for category in categories %}
+    <a href="#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}<small>{{ category[1].size }}</small></a>
+  {% endfor %}
+  {% if uncategorized.size > 0 %}<a href="#uncategorized">未分类<small>{{ uncategorized.size }}</small></a>{% endif %}
+</nav>
+{% for category in categories %}
+  {% assign category_id = category[0] | cgi_escape %}
+  {% assign category_posts = category[1] | sort: 'date' | reverse %}
+  <section class="collection-group" id="category-{{ category_id }}" aria-labelledby="heading-category-{{ category_id }}">
+    <h2 id="heading-category-{{ category_id }}">{{ category[0] | escape }}<small>{{ category[1].size }} 篇</small></h2>
+    {% include post-list.html posts=category_posts %}
+  </section>
+{% endfor %}
+{% if uncategorized.size > 0 %}
+  <section class="collection-group" id="uncategorized" aria-labelledby="heading-uncategorized">
+    <h2 id="heading-uncategorized">未分类<small>{{ uncategorized.size }} 篇</small></h2>
+    {% include post-list.html posts=uncategorized %}
+  </section>
+{% endif %}
+{% if site.posts.size == 0 %}<p class="empty-state">文章发布后，分类会自动出现在这里。</p>{% endif %}

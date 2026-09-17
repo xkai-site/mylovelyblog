@@ -1,0 +1,25 @@
+---
+layout: default
+title: 文章归档
+nav: archive
+permalink: /archive/
+---
+<header class="page-heading">
+  <p class="eyebrow">THE ARCHIVE</p>
+  <h1>时间留下的记录</h1>
+  <p>共 {{ site.posts.size }} 篇文章。沿着时间，看看走过的路。</p>
+</header>
+{% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+{% if years.size > 0 %}
+  <nav class="topic-index" aria-label="按年份跳转">
+    {% for year in years %}<a href="#year-{{ year.name }}">{{ year.name }}<small>{{ year.items.size }}</small></a>{% endfor %}
+  </nav>
+  {% for year in years %}
+    <section class="collection-group" id="year-{{ year.name }}" aria-labelledby="heading-year-{{ year.name }}">
+      <h2 id="heading-year-{{ year.name }}">{{ year.name }}<small>{{ year.items.size }} 篇</small></h2>
+      {% include post-list.html posts=year.items %}
+    </section>
+  {% endfor %}
+{% else %}
+  <p class="empty-state">还没有已发布的文章。</p>
+{% endif %}

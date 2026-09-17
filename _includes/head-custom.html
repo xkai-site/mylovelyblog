@@ -1,21 +1,4 @@
-<style>
-  header h1 a {
-    font-size: 1.5rem !important;
-    color: #333 !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    letter-spacing: -0.02em !important;
-  }
-  header h1 a:hover {
-    color: #666 !important;
-  }
-  header p {
-    color: #888 !important;
-    font-size: 0.9rem !important;
-    margin-top: 0.25rem !important;
-  }
-  header {
-    text-align: center !important;
-    padding: 2rem 0 !important;
-  }
-</style>
+{% comment %}
+  本地布局的 head 扩展入口。字体、样式、脚本由 default.html 统一管理。
+  无远程主题依赖，也不加载第三方追踪、外部字体或公式渲染器。
+{% endcomment %}

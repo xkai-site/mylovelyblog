@@ -1,5 +1,32 @@
-remote_theme: pages-themes/minimal@v0.2.0
-title: 我的博客
-description: 技术博客
+title: 小 xu 的成长日志
+description: 希望有技术，也有生活。记录探索、实践与日常。
+author: 小 xu
 baseurl: "/mylovelyblog"
 url: "https://xkai-site.github.io"
+lang: zh-CN
+timezone: Asia/Shanghai
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title:output_ext
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+sass:
+  style: compressed
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+exclude:
+  - PLAN.md
+  - task_plan.md
+  - findings.md
+  - progress.md
+  - docs
+  - templates
+  - scripts
+  - README.md
+  - node_modules
+  - vendor

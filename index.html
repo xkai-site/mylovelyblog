@@ -1,39 +1,37 @@
 ---
 layout: default
-title: 我的博客
+title: 首页
+nav: home
 ---
-
-<style>
-  section { max-width: 640px !important; margin: 0 auto !important; padding: 3rem 2rem !important; }
-  h1 { text-align: center !important; margin-bottom: 0.5rem !important; font-size: 2rem !important; }
-  section > p { text-align: center !important; color: #666 !important; margin-bottom: 3rem !important; }
-  h2 { margin-bottom: 1.5rem !important; font-size: 1.25rem !important; }
-  .posts-list { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-  .posts-list li { 
-    padding: 1rem 0 !important; 
-    border-bottom: 1px solid #eee !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: baseline !important;
-  }
-  .posts-list li:last-child { border-bottom: none !important; }
-  .post-title { color: #333 !important; text-decoration: none !important; }
-  .post-title:hover { color: #666 !important; }
-  .post-date { color: #999 !important; font-size: 0.9rem !important; }
-</style>
-
-<h1>欢迎你来!</h1>
-<p>小xu的成长日志~希望有技术,有生活</p>
-
-<h2>最新文章</h2>
-
-<ul class="posts-list">
-  {% for post in site.posts %}
-  <li>
-    <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-  </li>
+<section class="hero" aria-labelledby="intro-title">
+  <div>
+    <p class="eyebrow">NOTES ON TECH &amp; LIFE</p>
+    <h1 id="intro-title">保持好奇，<br>也认真生活。</h1>
+    <p class="hero-description">欢迎你来！这里是小 xu 的成长日志。<br>希望有技术，也有生活。把探索中的发现、实践与思考，一点点写在这里。</p>
+  </div>
+  <aside class="hero-aside" aria-label="关于这个博客">
+    <p class="eyebrow aside-label">A PERSONAL JOURNAL</p>
+    <p>写给此刻，也写给未来。</p>
+    <p><strong>{{ site.posts.size }}</strong> 篇记录 <span aria-hidden="true">·</span> <a href="{{ '/archive/' | relative_url }}">慢慢翻阅 →</a></p>
+  </aside>
+</section>
+<section aria-labelledby="latest-title">
+  <div class="section-heading">
+    <h2 id="latest-title">最近写下的<span>RECENT NOTES</span></h2>
+    <a href="{{ '/archive/' | relative_url }}">全部文章 →</a>
+  </div>
+  {% assign sorted_categories = site.categories | sort %}
+  {% if sorted_categories.size > 0 %}
+    <nav class="category-index" aria-label="按分类阅读">
+      {% for category in sorted_categories %}
+        <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}<small>{{ category[1].size }}</small></a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+  {% if site.posts.size > 0 %}
+    {% assign latest_posts = site.posts | slice: 0, 8 %}
+    {% include post-list.html posts=latest_posts heading='h3' excerpts=true %}
   {% else %}
-  <li>暂无文章</li>
-  {% endfor %}
-</ul>
+    <p class="empty-state">这里还没有文章。第一篇记录，很快就来。</p>
+  {% endif %}
+</section>

@@ -3,35 +3,51 @@ layout: default
 title: 首页
 nav: home
 ---
-<section class="hero" aria-labelledby="intro-title">
-  <div>
-    <p class="eyebrow">NOTES ON TECH &amp; LIFE</p>
-    <h1 id="intro-title">保持好奇，<br>也认真生活。</h1>
-    <p class="hero-description">欢迎你来！这里是小 xu 的成长日志。<br>希望有技术，也有生活。把探索中的发现、实践与思考，一点点写在这里。</p>
+<header class="journal-intro" aria-labelledby="intro-title">
+  <div class="journal-title">
+    <p class="eyebrow">随笔 · 实践 · 日常</p>
+    <h1 id="intro-title">小 xu 的成长日志<span class="title-period" aria-hidden="true">。</span></h1>
   </div>
-  <aside class="hero-aside" aria-label="关于这个博客">
-    <p class="eyebrow aside-label">A PERSONAL JOURNAL</p>
-    <p>写给此刻，也写给未来。</p>
-    <p><strong>{{ site.posts.size }}</strong> 篇记录 <span aria-hidden="true">·</span> <a href="{{ '/archive/' | relative_url }}">慢慢翻阅 →</a></p>
+  <div class="journal-description">
+    <p>希望有技术，也有生活。</p>
+    <p>把探索中的发现、实践与思考，<br>一点点写在这里。</p>
+  </div>
+</header>
+<div class="journal-layout">
+  <section aria-labelledby="latest-title">
+    <div class="section-heading">
+      <h2 id="latest-title">近作 <span>RECENT NOTES</span></h2>
+      <a href="{{ '/archive/' | relative_url }}">全部 {{ site.posts.size }} 篇 <span aria-hidden="true">↗</span></a>
+    </div>
+    {% if site.posts.size > 0 %}
+      {% assign latest_posts = site.posts | slice: 0, 8 %}
+      {% include post-list.html posts=latest_posts heading='h3' excerpts=true %}
+      <a class="archive-link" href="{{ '/archive/' | relative_url }}">继续翻阅归档 <span aria-hidden="true">→</span></a>
+    {% else %}
+      <p class="empty-state">这里还没有文章。第一篇记录，很快就来。</p>
+    {% endif %}
+  </section>
+  <aside class="journal-index" aria-label="文集索引">
+    {% assign sorted_categories = site.categories | sort %}
+    {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
+    <section class="index-section" aria-labelledby="category-index-title">
+      <h2 id="category-index-title"><span class="index-number" aria-hidden="true">01</span> 按分类阅读</h2>
+      <nav class="category-index" aria-label="文章分类">
+        {% for category in sorted_categories %}
+          <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}"><span>{{ category[0] | escape }}</span><small>{{ category[1].size }} 篇</small></a>
+        {% endfor %}
+        {% if uncategorized.size > 0 %}<a href="{{ '/categories/' | relative_url }}#uncategorized"><span>未分类</span><small>{{ uncategorized.size }} 篇</small></a>{% endif %}
+      </nav>
+    </section>
+    {% assign sorted_tags = site.tags | sort %}
+    {% if sorted_tags.size > 0 %}
+      <section class="index-section" aria-labelledby="tag-index-title">
+        <h2 id="tag-index-title"><span class="index-number" aria-hidden="true">02</span> 话题索引</h2>
+        <nav class="tag-list" aria-label="文章话题">
+          {% for tag in sorted_tags %}<a href="{{ '/tags/' | relative_url }}#tag-{{ tag[0] | cgi_escape | cgi_escape }}">{{ tag[0] | escape }}</a>{% endfor %}
+        </nav>
+      </section>
+    {% endif %}
+    <p class="index-colophon">不急于得出结论，<br>先把沿途的思考留下。</p>
   </aside>
-</section>
-<section aria-labelledby="latest-title">
-  <div class="section-heading">
-    <h2 id="latest-title">最近写下的<span>RECENT NOTES</span></h2>
-    <a href="{{ '/archive/' | relative_url }}">全部文章 →</a>
-  </div>
-  {% assign sorted_categories = site.categories | sort %}
-  {% if sorted_categories.size > 0 %}
-    <nav class="category-index" aria-label="按分类阅读">
-      {% for category in sorted_categories %}
-        <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}<small>{{ category[1].size }}</small></a>
-      {% endfor %}
-    </nav>
-  {% endif %}
-  {% if site.posts.size > 0 %}
-    {% assign latest_posts = site.posts | slice: 0, 8 %}
-    {% include post-list.html posts=latest_posts heading='h3' excerpts=true %}
-  {% else %}
-    <p class="empty-state">这里还没有文章。第一篇记录，很快就来。</p>
-  {% endif %}
-</section>
+</div>

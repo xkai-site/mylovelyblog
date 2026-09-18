@@ -1,7 +1,7 @@
 {% assign heading_tag = include.heading | default: 'h3' %}
 <ul class="post-list">
   {% for post in include.posts %}
-    <li>
+    <li{% if include.searchable %} data-search="{{ post.title | escape }} {{ post.categories | join: ' ' | escape }} {{ post.tags | join: ' ' | escape }} {{ post.date | date: '%Y-%m-%d' }} {{ post.date | date: '%Y.%m.%d' }}"{% endif %}>
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
       <div>
         <{{ heading_tag }}><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></{{ heading_tag }}>
@@ -15,6 +15,10 @@
             {% for category in categories %}<a href="{{ '/categories/' | relative_url }}#category-{{ category | cgi_escape | cgi_escape }}">{{ category | escape }}</a>{% endfor %}
           {% else %}
             <a href="{{ '/categories/' | relative_url }}#uncategorized">未分类</a>
+          {% endif %}
+          {% if include.searchable %}
+            {% assign unique_tags = post.tags | uniq %}
+            {% for tag in unique_tags %}<a class="entry-tag" href="{{ '/tags/' | relative_url }}#tag-{{ tag | cgi_escape | cgi_escape }}"># {{ tag | escape }}</a>{% endfor %}
           {% endif %}
         </div>
       </div>

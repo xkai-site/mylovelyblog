@@ -12,8 +12,9 @@
   function apply() {
     const theme = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
     document.documentElement.dataset.theme = theme;
-    const select = document.getElementById('theme-select');
-    if (select) select.value = preference;
+    document.querySelectorAll('[data-theme-value]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.themeValue === preference));
+    });
   }
   apply();
 
@@ -28,17 +29,19 @@
   });
 
   document.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('theme-select');
-    if (!select) return;
-    select.value = preference;
-    select.hidden = false;
-    select.addEventListener('change', () => {
-      preference = valid(select.value) ? select.value : 'system';
-      try {
-        if (preference === 'system') localStorage.removeItem(key);
-        else localStorage.setItem(key, preference);
-      } catch (_) { /* 保留本次切换，不阻止阅读。 */ }
-      apply();
+    const controls = document.getElementById('theme-controls');
+    if (!controls) return;
+    controls.querySelectorAll('[data-theme-value]').forEach(button => {
+      button.addEventListener('click', () => {
+        preference = valid(button.dataset.themeValue) ? button.dataset.themeValue : 'system';
+        try {
+          if (preference === 'system') localStorage.removeItem(key);
+          else localStorage.setItem(key, preference);
+        } catch (_) { /* 保留本次切换，不阻止阅读。 */ }
+        apply();
+      });
     });
+    apply();
+    controls.hidden = false;
   });
 })();

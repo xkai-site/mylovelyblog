@@ -5,21 +5,35 @@ nav: archive
 permalink: /archive/
 ---
 <header class="page-heading">
-  <p class="eyebrow">THE ARCHIVE</p>
-  <h1>时间留下的记录</h1>
-  <p>共 {{ site.posts.size }} 篇文章。沿着时间，看看走过的路。</p>
+  <p class="eyebrow">INDEX / CHRONOLOGY</p>
+  <h1>文章归档<span class="title-period" aria-hidden="true">。</span></h1>
+  <p>共 {{ site.posts.size }} 篇记录，按时间倒序排列。</p>
 </header>
 {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
 {% if years.size > 0 %}
-  <nav class="topic-index" aria-label="按年份跳转">
-    {% for year in years %}<a href="#year-{{ year.name }}">{{ year.name }}<small>{{ year.items.size }}</small></a>{% endfor %}
-  </nav>
-  {% for year in years %}
-    <section class="collection-group" id="year-{{ year.name }}" aria-labelledby="heading-year-{{ year.name }}">
-      <h2 id="heading-year-{{ year.name }}">{{ year.name }}<small>{{ year.items.size }} 篇</small></h2>
-      {% include post-list.html posts=year.items %}
-    </section>
-  {% endfor %}
+  <div class="archive-search" id="archive-search" role="search" aria-label="检索文章" hidden>
+    <label for="archive-query">检索归档</label>
+    <div class="search-field">
+      <input type="search" id="archive-query" placeholder="标题、分类、标签或日期" aria-describedby="search-status" autocomplete="off" spellcheck="false">
+      <button type="button" id="search-clear" hidden>清除</button>
+    </div>
+    <p id="search-status" role="status" aria-live="polite" aria-atomic="true">共 {{ site.posts.size }} 篇文章</p>
+  </div>
+  <div class="collection-layout">
+    <nav class="topic-index" aria-label="按年份跳转">
+      <p class="index-label">年份索引</p>
+      {% for year in years %}<a href="#year-{{ year.name }}"><span>{{ year.name }}</span><small>{{ year.items.size }} 篇</small></a>{% endfor %}
+    </nav>
+    <div id="archive-results">
+      {% for year in years %}
+        <section class="collection-group" id="year-{{ year.name }}" aria-labelledby="heading-year-{{ year.name }}">
+          <h2 id="heading-year-{{ year.name }}">{{ year.name }}<small>{{ year.items.size }} 篇</small></h2>
+          {% include post-list.html posts=year.items searchable=true %}
+        </section>
+      {% endfor %}
+      <p class="empty-state" id="search-empty" hidden>没有找到匹配的文章。试试其他关键词，或清除检索查看全部。</p>
+    </div>
+  </div>
 {% else %}
   <p class="empty-state">还没有已发布的文章。</p>
 {% endif %}

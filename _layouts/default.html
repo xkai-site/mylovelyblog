@@ -24,8 +24,8 @@
   <a class="skip-link" href="#main-content">跳到正文</a>
   <header class="site-header shell">
     <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="{{ site.title | escape }}，首页">
-      <span class="wordmark-symbol" aria-hidden="true">xu<span>.</span></span>
-      <span class="wordmark-name">成长日志<small>MY LOVELY BLOG</small></span>
+      <span class="wordmark-symbol" aria-hidden="true">xu.</span>
+      <span class="wordmark-name">成长日志<small>A PERSONAL JOURNAL</small></span>
     </a>
     <div class="header-controls">
       <nav class="site-nav" aria-label="主导航">
@@ -34,20 +34,21 @@
         <a href="{{ '/categories/' | relative_url }}"{% if page.nav == 'categories' %} aria-current="page"{% endif %}>分类</a>
         <a href="{{ '/tags/' | relative_url }}"{% if page.nav == 'tags' %} aria-current="page"{% endif %}>标签</a>
       </nav>
-      <select id="theme-select" class="theme-select" aria-label="配色模式" hidden>
-        <option value="system">跟随系统</option>
-        <option value="light">浅色</option>
-        <option value="dark">深色</option>
-      </select>
+      <div id="theme-controls" class="theme-controls" role="group" aria-label="配色模式" hidden>
+        <button type="button" data-theme-value="light" aria-pressed="false">浅色</button>
+        <button type="button" data-theme-value="dark" aria-pressed="false">深色</button>
+        <button type="button" data-theme-value="system" aria-pressed="false" title="跟随系统配色">系统</button>
+      </div>
     </div>
   </header>
   <main id="main-content" class="shell main-content" tabindex="-1">
     {{ content }}
   </main>
   <footer class="site-footer shell">
-    <p>希望有技术，也有生活。</p>
-    <p>© {{ site.time | date: '%Y' }} {{ site.author | escape }} <span aria-hidden="true">/</span> 用文字留下成长的痕迹</p>
+    <p>小 xu 的成长日志<span aria-hidden="true"> / </span>希望有技术，也有生活。</p>
+    <p>© {{ site.time | date: '%Y' }} {{ site.author | escape }} <a href="#main-content">回到页首 ↑</a></p>
   </footer>
   {% if page.layout == 'post' %}<script src="{{ '/assets/js/post.js' | relative_url }}" defer></script>{% endif %}
+  {% if page.nav == 'archive' %}<script src="{{ '/assets/js/archive.js' | relative_url }}" defer></script>{% endif %}
 </body>
 </html>

@@ -17,17 +17,17 @@ layout: default
           <a href="{{ '/categories/' | relative_url }}#uncategorized">未分类</a>
         {% endif %}
       </div>
-      <h1 id="post-title">{{ page.title | escape }}</h1>
-      {% if page.description and page.description != '' %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
-    </header>
-    <div class="prose" id="post-body">{{ content }}</div>
-    <footer class="post-footer">
       {% if page.tags.size > 0 %}
         <nav class="tag-list" aria-label="本文标签">
           {% assign unique_tags = page.tags | uniq %}
           {% for tag in unique_tags %}<a href="{{ '/tags/' | relative_url }}#tag-{{ tag | cgi_escape | cgi_escape }}"># {{ tag | escape }}</a>{% endfor %}
         </nav>
       {% endif %}
+      <h1 id="post-title">{{ page.title | escape }}</h1>
+      {% if page.description and page.description != '' %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
+    </header>
+    <div class="prose" id="post-body">{{ content }}</div>
+    <footer class="post-footer">
       <nav class="post-pagination" aria-label="相邻文章">
         <div>{% if page.previous %}<span>上一篇</span><a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>{% endif %}</div>
         <div>{% if page.next %}<span>下一篇</span><a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>{% endif %}</div>

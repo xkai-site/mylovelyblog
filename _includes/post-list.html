@@ -16,7 +16,7 @@
           {% else %}
             <a href="{{ '/categories/' | relative_url }}#uncategorized">未分类</a>
           {% endif %}
-          {% if include.searchable %}
+          {% if include.searchable or include.show_tags %}
             {% assign unique_tags = post.tags | uniq %}
             {% for tag in unique_tags %}<a class="entry-tag" href="{{ '/tags/' | relative_url }}#tag-{{ tag | cgi_escape | cgi_escape }}"># {{ tag | escape }}</a>{% endfor %}
           {% endif %}

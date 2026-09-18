@@ -10,7 +10,7 @@
 
 - [ ] 检查 Git diff，提交所有本次需要的新增文件（尤其是 `_layouts/default.html`、`_includes/post-list.html`、`assets/css/`、`assets/js/` 和三个索引页）。不要只提交已跟踪文件的修改，也不要误提交私密草稿。
 - [ ] 按平常方式 push，等待 GitHub Actions 对应提交构建、部署成功。
-- [ ] 打开 https://xkai-site.github.io/mylovelyblog/ ，必要时强制刷新。看到普通文字站名及近作、分类和标签；没有 `xu.` 组合 Logo、英文副标题、重复刊头或固定口号。
+- [ ] 打开 https://xkai-site.github.io/mylovelyblog/ ，必要时强制刷新。页眉只保留导航与主题切换，首页显示近作、分类和标签；没有站名、组合 Logo、英文副标题、重复刊头或固定口号。首页文章摘要包含分类与标签，详情页标签在标题上方。
 - [ ] 若工作流失败，保存失败步骤的日志；不要用“网页没更新”判断样式代码本身是否生效。
 
 ## 2. 先花五分钟检查这些

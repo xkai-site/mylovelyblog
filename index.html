@@ -10,7 +10,7 @@ nav: home
     </div>
     {% if site.posts.size > 0 %}
       {% assign latest_posts = site.posts | slice: 0, 8 %}
-      {% include post-list.html posts=latest_posts heading='h2' excerpts=true %}
+      {% include post-list.html posts=latest_posts heading='h2' excerpts=true show_tags=true %}
       <a class="archive-link" href="{{ '/archive/' | relative_url }}">全部文章 <span aria-hidden="true">→</span></a>
     {% else %}
       <p class="empty-state">暂无文章。</p>

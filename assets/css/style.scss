@@ -51,12 +51,10 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
 .shell { width: calc(100% - 112px); max-width: 1120px; margin-inline: auto; }
 .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 10; padding: .7rem 1rem; background: var(--bg); border: 2px solid var(--accent); }
 .skip-link:focus { top: 1rem; }
-.site-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: 26px 21px; border-bottom: 3px double var(--strong-line); }
-.wordmark { display: inline-flex; align-items: center; gap: 15px; color: var(--text); text-decoration: none; flex-shrink: 0; }
-.wordmark:hover { text-decoration: none; }
-.wordmark-symbol { font: italic 38px/1 Georgia, serif; letter-spacing: -.09em; color: var(--accent); padding-right: 6px; }
-.wordmark-name { font-size: 16px; line-height: 1.5; letter-spacing: .12em; }
-.wordmark-name small { display: block; font: 9px/1.8 var(--mono); letter-spacing: .1em; color: var(--muted); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 2rem; padding-block: 24px; border-bottom: 1px solid var(--line); }
+.site-name { color: var(--text); font-size: 20px; text-decoration: none; }
+.site-name:hover { color: var(--accent); text-decoration: none; }
 .header-controls { display: flex; align-items: center; gap: 32px; }
 .site-nav { display: flex; gap: 27px; flex-wrap: wrap; }
 .site-nav a { color: var(--muted); text-decoration: none; font-size: 15px; padding-block: 9px; }
@@ -66,37 +64,22 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
 .theme-controls button:hover { color: var(--text); background: var(--surface); }
 .theme-controls button[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); }
 .main-content { min-height: 70vh; padding-bottom: 88px; }
-.site-footer { padding-block: 23px 32px; border-top: 3px double var(--strong-line); display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 12px; }
+.site-footer { padding-block: 23px 32px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 12px; }
 .site-footer p { margin: 0; }
-.site-footer span { padding-inline: .4rem; }
-.site-footer a { color: var(--muted); margin-left: 24px; text-decoration: none; }
-.eyebrow { font: 10px/1.8 var(--mono); letter-spacing: .16em; color: var(--muted); }
-.title-period { color: var(--accent); }
-.journal-intro { display: grid; grid-template-columns: minmax(0, 1fr) 250px; align-items: end; gap: 50px; padding: 65px 0 48px; border-bottom: 1px solid var(--strong-line); }
-.journal-intro .eyebrow { font: 12px/1.8 var(--serif); letter-spacing: .24em; color: var(--accent); margin: 0 0 16px; }
-.journal-title h1 { font-size: clamp(30px, 3.6vw, 46px); font-weight: 400; letter-spacing: -.03em; margin: 0; line-height: 1.5; }
-.journal-description { font-size: 14px; color: var(--muted); }
-.journal-description p { margin: 0; }
-.journal-description p:first-child { color: var(--text); font-size: 16px; margin-bottom: 8px; }
-.journal-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 72px; padding-top: 35px; }
+.site-footer a { color: var(--muted); text-decoration: none; }
+.journal-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 72px; padding-top: 46px; }
 .journal-layout > *, .collection-layout > * { min-width: 0; }
 .section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
-.section-heading h2 { margin: 0; font-size: 18px; font-weight: 400; }
-.section-heading h2 span { margin-left: .7rem; font: 10px var(--mono); letter-spacing: .06em; color: var(--muted); }
-.section-heading > a { color: var(--muted); font-size: 12px; text-decoration: none; }
-.section-heading > a:hover { color: var(--accent); }
+.section-heading h1 { margin: 0; font-size: 26px; font-weight: 400; }
 .journal-index { border-left: 1px solid var(--line); padding-left: 28px; }
 .index-section + .index-section { margin-top: 35px; }
 .index-section h2 { font-size: 14px; font-weight: 400; margin: 0 0 17px; }
-.index-number { color: var(--accent); font: 10px var(--mono); margin-right: 9px; }
 .category-index { display: flex; flex-direction: column; }
 .category-index a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--line); padding-block: 10px; color: var(--text); font-size: 15px; text-decoration: none; }
 .category-index a:hover { color: var(--accent); }
-.category-index small { color: var(--muted); font: 10px var(--mono); flex-shrink: 0; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; }
 .tag-list a { color: var(--muted); text-decoration: none; }
 .tag-list a:hover { color: var(--accent); text-decoration: underline; }
-.index-colophon { border-top: 1px solid var(--line); padding-top: 21px; margin-top: 32px; color: var(--muted); font-size: 13px; line-height: 2; }
 .post-list { list-style: none; margin: 0; padding: 0; }
 .post-list > li { padding: 27px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 23px; }
 .post-list time { padding-top: 7px; font: 11px/1.8 var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); }
@@ -110,30 +93,26 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
 .entry-meta a:hover { text-decoration: underline; }
 .archive-link { display: flex; justify-content: space-between; padding-block: 23px; font-size: 14px; text-decoration: none; }
 .empty-state { color: var(--muted); padding: 32px 0; }
-.page-heading { padding-block: 57px 32px; border-bottom: 1px solid var(--strong-line); }
-.page-heading .eyebrow { margin: 0 0 12px; }
-.page-heading h1 { margin: 0 0 14px; font: 400 clamp(30px, 4vw, 42px)/1.5 var(--serif); }
-.page-heading > p:last-child { color: var(--muted); margin: 0; font-size: 15px; }
+.page-heading { padding-block: 42px 24px; border-bottom: 1px solid var(--line); }
+.page-heading h1 { margin: 0; font: 400 30px/1.5 var(--serif); }
 .collection-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 65px; padding-top: 32px; align-items: start; }
+.collection-layout.collection-layout--single { grid-template-columns: minmax(0, 1fr); max-width: 828px; }
 .collection-group { scroll-margin-top: 30px; }
 .collection-group + .collection-group { margin-top: 44px; }
 .collection-group > h2 { display: flex; align-items: baseline; gap: 16px; font-size: 24px; font-weight: 400; padding-bottom: 14px; margin: 0; border-bottom: 1px solid var(--strong-line); }
-.collection-group > h2 small { font: 11px var(--mono); color: var(--muted); }
 .collection-group .post-list > li { padding-block: 21px; }
 .collection-group .post-list h3 { font-size: 20px; }
 .topic-index { display: flex; flex-direction: column; border-right: 1px solid var(--line); padding-right: 24px; position: sticky; top: 28px; max-height: calc(100vh - 56px); overflow-y: auto; }
-.index-label { margin: 0 0 15px; color: var(--muted); font-size: 12px; letter-spacing: .08em; }
 .topic-index a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px; }
 .topic-index a:hover { color: var(--accent); }
-.topic-index small { color: var(--muted); font: 10px var(--mono); white-space: nowrap; }
-.archive-search { display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; align-items: center; gap: 20px 65px; padding-block: 25px; border-bottom: 1px solid var(--line); }
-.archive-search label { font-size: 14px; }
-.search-field { position: relative; }
+.archive-search { display: flex; align-items: center; padding-block: 24px; border-bottom: 1px solid var(--line); }
+.search-field { position: relative; flex: 1; min-width: 0; max-width: 480px; }
 .search-field input { display: block; width: 100%; min-width: 0; padding: 11px 60px 11px 13px; font-size: 14px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 0; -webkit-appearance: none; }
 .search-field input::placeholder { color: var(--muted); opacity: 1; }
 .search-field input::-webkit-search-cancel-button { -webkit-appearance: none; }
 .search-field button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--accent); padding: 8px; font-size: 12px; }
-.archive-search > p { margin: 0; font-size: 12px; color: var(--muted); min-width: 7em; }
+.archive-search > p { margin: 0; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.archive-search > p:not(:empty) { margin-left: 16px; }
 .reading-layout { display: grid; grid-template-columns: minmax(0, 760px) minmax(160px, 1fr); gap: 65px; padding-top: 38px; }
 .post { min-width: 0; }
 .back-link { font-size: 13px; color: var(--muted); text-decoration: none; }
@@ -194,7 +173,7 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
 .toc a[aria-current] { font-weight: 600; }
 .toc-top { margin-top: 20px; }
 .post-footer { margin-top: 55px; border-top: 1px solid var(--line); padding-top: 25px; }
-.end-note { font: 13px var(--serif); color: var(--muted); margin-block: 25px 35px; }
+.post-footer > .tag-list { margin-bottom: 28px; }
 .post-pagination { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-top: 22px; }
 .post-pagination > div:last-child { text-align: right; }
 .post-pagination span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 7px; }
@@ -204,11 +183,9 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
   .header-controls { gap: 20px; }
   .site-nav { gap: 20px; }
   .theme-controls { padding-left: 14px; }
-  .journal-intro { grid-template-columns: minmax(0, 1fr) 220px; gap: 25px; }
   .journal-layout { grid-template-columns: minmax(0, 1fr) 180px; gap: 36px; }
   .journal-index { padding-left: 20px; }
   .collection-layout { grid-template-columns: 170px minmax(0, 1fr); gap: 32px; }
-  .archive-search { grid-template-columns: 170px minmax(0, 1fr) auto; gap: 20px 32px; }
   .reading-layout { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin-inline: auto; }
   .toc { order: -1; padding: 0 0 25px; }
   .toc details { position: static; border-left: 0; padding: 12px 0; border-block: 1px solid var(--line); }
@@ -218,45 +195,30 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
 }
 @media (max-width: 720px) {
   .shell { width: calc(100% - 40px); }
-  .site-header { align-items: flex-start; flex-direction: column; gap: 19px; padding-block: 22px 15px; }
-  .wordmark-symbol { font-size: 34px; }
+  .site-header { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 20px 12px; }
   .header-controls { width: 100%; justify-content: space-between; gap: 10px; }
   .site-nav { gap: 22px; }
   .site-nav a { font-size: 14px; }
   .theme-controls { border: 0; padding: 0; }
   .theme-controls button { padding-inline: 7px; font-size: 11px; }
-  .journal-intro { grid-template-columns: 1fr; gap: 21px; padding: 36px 0 30px; }
-  .journal-intro .eyebrow { margin-bottom: 13px; }
-  .journal-description { font-size: 14px; }
-  .journal-description p:first-child { margin-bottom: 4px; }
-  .journal-description br { display: none; }
   .journal-layout { grid-template-columns: 1fr; gap: 35px; padding-top: 27px; }
   .journal-index { border-left: 0; border-top: 1px solid var(--strong-line); padding: 25px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
   .index-section + .index-section { margin: 0; }
-  .index-colophon { grid-column: 1 / -1; margin: 0; }
-  .index-colophon br { display: none; }
-  .section-heading h2 span { font-size: 9px; margin-left: .4rem; }
   .post-list > li { grid-template-columns: 1fr; gap: 7px; padding-block: 23px; }
   .post-list h2, .post-list h3 { font-size: 22px; }
   .post-list time { padding: 0; font-size: 10px; }
   .post-list .entry-description { font-size: 14px; }
   .entry-meta { margin-top: 8px; }
   .main-content { padding-bottom: 55px; }
-  .site-footer { flex-direction: column; gap: 9px; font-size: 11px; }
-  .site-footer > p:last-child { display: flex; justify-content: space-between; }
-  .page-heading { padding-block: 35px 25px; }
-  .page-heading > p:last-child { font-size: 14px; }
+  .site-footer { font-size: 11px; }
+  .page-heading { padding-block: 30px 22px; }
   .collection-layout { grid-template-columns: 1fr; gap: 28px; padding-top: 23px; }
   .topic-index { position: static; max-height: none; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 17px; flex-direction: row; flex-wrap: wrap; gap: 4px 23px; }
-  .index-label { width: 100%; margin-bottom: 5px; }
   .topic-index a { gap: 8px; border: 0; padding-block: 7px; }
   .collection-group > h2 { font-size: 23px; }
   .collection-group .post-list h3 { font-size: 20px; }
-  .archive-search { grid-template-columns: 1fr auto; gap: 9px; padding-block: 20px; }
-  .archive-search label { grid-column: 1; }
-  .search-field { grid-column: 1 / -1; grid-row: 2; }
+  .archive-search { padding-block: 20px; }
   .search-field input { font-size: 16px; }
-  .archive-search > p { grid-column: 2; grid-row: 1; text-align: right; }
   .reading-layout { padding-top: 26px; }
   .post-header { margin-block: 28px; padding-bottom: 24px; }
   .prose { font-size: 17px; line-height: 1.95; }
@@ -269,13 +231,9 @@ h1, h2, h3, h4 { line-height: 1.5; text-wrap: pretty; }
   .header-controls { flex-wrap: wrap; }
   .site-nav { flex: 1; justify-content: space-between; }
   .theme-controls { margin-left: auto; }
-  .journal-title h1 { font-size: 28px; }
-  .section-heading h2 span { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   a, button { transition: color .15s ease, background-color .15s ease; }
-  .journal-intro { animation: ink-appear .45s ease-out both; }
-  @keyframes ink-appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 }
 @media print {
   :root, :root[data-theme], :root:not([data-theme="light"]) { color-scheme: light; --bg: #fff; --text: #000; --muted: #444; --line: #ccc; --strong-line: #000; --accent: #000; --surface: #f5f5f5; --code: #000; }

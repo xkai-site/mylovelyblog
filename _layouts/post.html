@@ -28,7 +28,6 @@ layout: default
           {% for tag in unique_tags %}<a href="{{ '/tags/' | relative_url }}#tag-{{ tag | cgi_escape | cgi_escape }}"># {{ tag | escape }}</a>{% endfor %}
         </nav>
       {% endif %}
-      <p class="end-note">写在这里，留给未来的自己。</p>
       <nav class="post-pagination" aria-label="相邻文章">
         <div>{% if page.previous %}<span>上一篇</span><a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>{% endif %}</div>
         <div>{% if page.next %}<span>下一篇</span><a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>{% endif %}</div>

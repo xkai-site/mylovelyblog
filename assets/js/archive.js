@@ -12,7 +12,6 @@
   // 只检索已渲染的公开文章元数据，不依赖网络，也不改写文章链接。
   const groups = [...results.querySelectorAll('.collection-group')].map(section => ({
     section,
-    count: section.querySelector('h2 small'),
     link: document.querySelector(`.topic-index a[href="#${section.id}"]`),
     entries: [...section.querySelectorAll('[data-search]')].map(element => ({
       element,
@@ -31,16 +30,12 @@
         if (matches) count++;
       });
       group.section.hidden = count === 0;
-      group.count.textContent = `${count} 篇`;
-      if (group.link) {
-        group.link.hidden = count === 0;
-        group.link.querySelector('small').textContent = `${count} 篇`;
-      }
+      if (group.link) group.link.hidden = count === 0;
       total += count;
     });
     clear.hidden = input.value.length === 0;
     empty.hidden = total > 0;
-    status.textContent = terms.length ? `找到 ${total} 篇文章` : `共 ${total} 篇文章`;
+    status.textContent = terms.length ? `${total} 篇结果` : '';
   }
 
   input.addEventListener('input', filter);

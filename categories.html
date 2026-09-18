@@ -5,35 +5,32 @@ nav: categories
 permalink: /categories/
 ---
 <header class="page-heading">
-  <p class="eyebrow">INDEX / SUBJECTS</p>
-  <h1>文章分类<span class="title-period" aria-hidden="true">。</span></h1>
-  <p>技术、生活与随想。从一个主题开始阅读。</p>
+  <h1>分类</h1>
 </header>
 {% assign categories = site.categories | sort %}
 {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
 <div class="collection-layout">
 <nav class="topic-index" aria-label="分类索引">
-  <p class="index-label">分类索引</p>
   {% for category in categories %}
-    <a href="#category-{{ category[0] | cgi_escape | cgi_escape }}"><span>{{ category[0] | escape }}</span><small>{{ category[1].size }} 篇</small></a>
+    <a href="#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}</a>
   {% endfor %}
-  {% if uncategorized.size > 0 %}<a href="#uncategorized"><span>未分类</span><small>{{ uncategorized.size }} 篇</small></a>{% endif %}
+  {% if uncategorized.size > 0 %}<a href="#uncategorized">未分类</a>{% endif %}
 </nav>
 <div>
 {% for category in categories %}
   {% assign category_id = category[0] | cgi_escape %}
   {% assign category_posts = category[1] | sort: 'date' | reverse %}
   <section class="collection-group" id="category-{{ category_id }}" aria-labelledby="heading-category-{{ category_id }}">
-    <h2 id="heading-category-{{ category_id }}">{{ category[0] | escape }}<small>{{ category[1].size }} 篇</small></h2>
+    <h2 id="heading-category-{{ category_id }}">{{ category[0] | escape }}</h2>
     {% include post-list.html posts=category_posts %}
   </section>
 {% endfor %}
 {% if uncategorized.size > 0 %}
   <section class="collection-group" id="uncategorized" aria-labelledby="heading-uncategorized">
-    <h2 id="heading-uncategorized">未分类<small>{{ uncategorized.size }} 篇</small></h2>
+    <h2 id="heading-uncategorized">未分类</h2>
     {% include post-list.html posts=uncategorized %}
   </section>
 {% endif %}
-{% if site.posts.size == 0 %}<p class="empty-state">文章发布后，分类会自动出现在这里。</p>{% endif %}
+{% if site.posts.size == 0 %}<p class="empty-state">暂无文章。</p>{% endif %}
 </div>
 </div>

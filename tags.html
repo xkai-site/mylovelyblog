@@ -5,28 +5,25 @@ nav: tags
 permalink: /tags/
 ---
 <header class="page-heading">
-  <p class="eyebrow">INDEX / KEYWORDS</p>
-  <h1>话题索引<span class="title-period" aria-hidden="true">。</span></h1>
-  <p>用关键词，串起不同日子里的记录。</p>
+  <h1>标签</h1>
 </header>
 {% assign tags = site.tags | sort %}
 {% if tags.size > 0 %}
   <div class="collection-layout">
   <nav class="topic-index" aria-label="标签索引">
-    <p class="index-label">关键词 · {{ tags.size }}</p>
-    {% for tag in tags %}<a href="#tag-{{ tag[0] | cgi_escape | cgi_escape }}"><span>{{ tag[0] | escape }}</span><small>{{ tag[1].size }} 篇</small></a>{% endfor %}
+    {% for tag in tags %}<a href="#tag-{{ tag[0] | cgi_escape | cgi_escape }}">{{ tag[0] | escape }}</a>{% endfor %}
   </nav>
   <div>
   {% for tag in tags %}
     {% assign tag_id = tag[0] | cgi_escape %}
     {% assign tag_posts = tag[1] | sort: 'date' | reverse %}
     <section class="collection-group" id="tag-{{ tag_id }}" aria-labelledby="heading-tag-{{ tag_id }}">
-      <h2 id="heading-tag-{{ tag_id }}"># {{ tag[0] | escape }}<small>{{ tag[1].size }} 篇</small></h2>
+      <h2 id="heading-tag-{{ tag_id }}">{{ tag[0] | escape }}</h2>
       {% include post-list.html posts=tag_posts %}
     </section>
   {% endfor %}
   </div>
   </div>
 {% else %}
-  <p class="empty-state">还没有标签。不带标签的文章仍可在归档中找到。</p>
+  <p class="empty-state">暂无标签。</p>
 {% endif %}

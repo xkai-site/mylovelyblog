@@ -1,7 +1,9 @@
 (() => {
   'use strict';
   const key = 'lovely-blog-theme';
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const media = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-color-scheme: dark)')
+    : { matches: false };
   const isTheme = value => value === 'light' || value === 'dark';
 
   // null 表示访客还没手动选择过：进入网站时跟随系统，系统外观变化也继续跟随。
@@ -26,8 +28,8 @@
   apply();
 
   const onSystemChange = () => { if (!preference) apply(); };
-  if (media.addEventListener) media.addEventListener('change', onSystemChange);
-  else if (media.addListener) media.addListener(onSystemChange);
+  if (typeof media.addEventListener === 'function') media.addEventListener('change', onSystemChange);
+  else if (typeof media.addListener === 'function') media.addListener(onSystemChange);
 
   window.addEventListener('storage', event => {
     if (event.key !== key && event.key !== null) return;
@@ -35,18 +37,28 @@
     apply();
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function init() {
     const controls = document.getElementById('theme-controls');
     const button = document.getElementById('theme-toggle');
     if (!controls || !button) return;
-    button.addEventListener('click', () => {
-      preference = current() === 'dark' ? 'light' : 'dark';
-      try {
-        localStorage.setItem(key, preference);
-      } catch (_) { /* 保留本次切换，不阻止阅读。 */ }
-      apply();
-    });
+
+    if (button.dataset.themeBound !== 'true') {
+      button.addEventListener('click', () => {
+        preference = current() === 'dark' ? 'light' : 'dark';
+        try {
+          localStorage.setItem(key, preference);
+        } catch (_) { /* 保留本次切换，不阻止阅读。 */ }
+        apply();
+      });
+      button.dataset.themeBound = 'true';
+    }
     apply();
     controls.hidden = false;
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
 })();

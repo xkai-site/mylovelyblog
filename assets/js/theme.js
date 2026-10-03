@@ -6,6 +6,7 @@
     : { matches: false };
   const isTheme = value => value === 'light' || value === 'dark';
 
+  // 首屏配色由 head 内联初始化 / CSS 提供；本脚本延后绑定交互。
   // null 表示访客还没手动选择过：进入网站时跟随系统，系统外观变化也继续跟随。
   let preference = null;
   try {

@@ -4,33 +4,33 @@ title: 归档
 nav: archive
 permalink: /archive/
 ---
-<header class="page-heading">
-  <h1>归档<span class="heading-period" aria-hidden="true">.</span></h1>
-</header>
+<h1 class="visually-hidden">归档</h1>
 {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
 {% if years.size > 0 %}
-  <div class="archive-search" id="archive-search" role="search" aria-label="检索文章" hidden>
-    <label class="visually-hidden" for="archive-query">搜索文章</label>
-    <div class="search-field">
-      <input type="search" id="archive-query" placeholder="搜索文章" aria-describedby="search-status" autocomplete="off" spellcheck="false">
-      <button type="button" id="search-clear" hidden>清除</button>
-    </div>
-    <p id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
-  </div>
   <div class="collection-layout{% if years.size == 1 %} collection-layout--single{% endif %}">
     {% if years.size > 1 %}
       <nav class="topic-index" aria-label="按年份跳转">
         {% for year in years %}<a href="#year-{{ year.name }}">{{ year.name }}</a>{% endfor %}
       </nav>
     {% endif %}
-    <div id="archive-results">
-      {% for year in years %}
-        <section class="collection-group" id="year-{{ year.name }}" aria-labelledby="heading-year-{{ year.name }}">
-          <h2 id="heading-year-{{ year.name }}">{{ year.name }}</h2>
-          {% include post-list.html posts=year.items searchable=true %}
-        </section>
-      {% endfor %}
-      <p class="empty-state" id="search-empty" hidden>未找到相关文章。</p>
+    <div>
+      <div class="archive-search" id="archive-search" role="search" aria-label="检索文章" hidden>
+        <label class="visually-hidden" for="archive-query">搜索文章</label>
+        <div class="search-field">
+          <input type="search" id="archive-query" placeholder="搜索文章" aria-describedby="search-status" autocomplete="off" spellcheck="false">
+          <button type="button" id="search-clear" hidden>清除</button>
+        </div>
+        <p id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+      <div id="archive-results">
+        {% for year in years %}
+          <section class="collection-group" id="year-{{ year.name }}" aria-labelledby="heading-year-{{ year.name }}">
+            <h2 id="heading-year-{{ year.name }}">{{ year.name }}</h2>
+            {% include post-list.html posts=year.items searchable=true %}
+          </section>
+        {% endfor %}
+        <p class="empty-state" id="search-empty" hidden>未找到相关文章。</p>
+      </div>
     </div>
   </div>
 {% else %}

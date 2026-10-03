@@ -6,9 +6,7 @@ permalink: /
 ---
 <div class="journal-layout">
   <section aria-labelledby="latest-title">
-    <div class="section-heading">
-      <h1 id="latest-title">近作<span class="heading-period" aria-hidden="true">.</span></h1>
-    </div>
+    <h1 id="latest-title" class="visually-hidden">近作</h1>
     {% if site.posts.size > 0 %}
       {% assign latest_posts = site.posts | slice: 0, 8 %}
       {% include post-list.html posts=latest_posts heading='h2' excerpts=true show_tags=true %}

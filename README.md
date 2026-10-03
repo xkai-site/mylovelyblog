@@ -34,6 +34,7 @@ node scripts/new-post.mjs --title "新的一篇笔记" --id new-note --category 
 | `_layouts/`、`_includes/` | Jekyll 页面模板 |
 | `assets/css/style.scss` | 两套色板与统一排版 |
 | `assets/js/` | 配色切换、目录、图片与表格增强 |
+| `pages/` | 首页、归档、分类、标签的 Jekyll 页面源文件；通过 permalink 保持公开路径 |
 | `scripts/` | 本地写作工具；`scripts/templates/` 存放新文章模板 |
 
-写作脚本及其模板和说明文件已在 `_config.yml` 中排除，不作为网站资源发布。根目录的索引页保留在原位，确保 Jekyll 路由不变；未改变远程工作流。
+写作脚本及其模板和说明文件已在 `_config.yml` 中排除，不作为网站资源发布。Jekyll 页面源文件集中在 `pages/`；固定 permalink 保持首页、归档、分类和标签的公开路径不变。未改变远程工作流。

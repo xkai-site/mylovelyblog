@@ -60,8 +60,8 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .site-nav a:hover, .site-nav a[aria-current] { color: var(--text); }
 .site-nav a[aria-current]::after { transform: scaleX(1); }
 .theme-controls { display: flex; align-items: center; padding-left: 20px; }
-.theme-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 0; }
-.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: var(--text); background: transparent; border: 0; border-radius: 0; }
+.theme-toggle:hover { color: var(--accent); }
 .theme-toggle svg { width: 18px; height: 18px; }
 .theme-icon--sun { display: none; }
 :root[data-theme="dark"] .theme-icon--sun { display: block; }

@@ -5,7 +5,8 @@ nav: categories
 permalink: /categories/
 ---
 <header class="page-heading">
-  <h1>分类</h1>
+  <p class="section-kicker" lang="en">Categories</p>
+  <h1>分类<span class="heading-period" aria-hidden="true">.</span></h1>
 </header>
 {% assign categories = site.categories | sort %}
 {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}

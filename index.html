@@ -6,7 +6,11 @@ nav: home
 <div class="journal-layout">
   <section aria-labelledby="latest-title">
     <div class="section-heading">
-      <h1 id="latest-title">近作</h1>
+      <div>
+        <p class="section-kicker" lang="en">Latest writing</p>
+        <h1 id="latest-title">近作<span class="heading-period" aria-hidden="true">.</span></h1>
+      </div>
+      <p class="journal-intro">{{ site.description | escape }}</p>
     </div>
     {% if site.posts.size > 0 %}
       {% assign latest_posts = site.posts | slice: 0, 8 %}
@@ -20,7 +24,7 @@ nav: home
     {% assign sorted_categories = site.categories | sort %}
     {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
     <section class="index-section" aria-labelledby="category-index-title">
-      <h2 id="category-index-title">分类</h2>
+      <h2 id="category-index-title">分类 <span lang="en">Categories</span></h2>
       <nav class="category-index" aria-label="文章分类">
         {% for category in sorted_categories %}
           <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}</a>
@@ -31,7 +35,7 @@ nav: home
     {% assign sorted_tags = site.tags | sort %}
     {% if sorted_tags.size > 0 %}
       <section class="index-section" aria-labelledby="tag-index-title">
-        <h2 id="tag-index-title">标签</h2>
+        <h2 id="tag-index-title">标签 <span lang="en">Topics</span></h2>
         <nav class="tag-list" aria-label="文章话题">
           {% for tag in sorted_tags %}<a href="{{ '/tags/' | relative_url }}#tag-{{ tag[0] | cgi_escape | cgi_escape }}">{{ tag[0] | escape }}</a>{% endfor %}
         </nav>

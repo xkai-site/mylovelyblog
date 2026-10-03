@@ -2,7 +2,7 @@
 
 小 xu 的成长日志。Jekyll 静态博客，继续通过现有 GitHub Actions 构建发布。
 
-- 白底书刊式阅读／深色模式：进入网站按系统外观，一个按钮切换并记住手动选择。
+- 瑞士风格排版：无衬线标题、非对称网格、纸白与信号红；支持深色模式，按系统外观进入，一个按钮切换并记住手动选择。
 - 首页、年份归档、分类、标签、长文目录和图片说明。
 - Markdown 内容与图片随 Git 管理，不需要管理后台。
 
@@ -34,6 +34,6 @@ node scripts/new-post.mjs --title "新的一篇笔记" --id new-note --category 
 | `_layouts/`、`_includes/` | Jekyll 页面模板 |
 | `assets/css/style.scss` | 两套色板与统一排版 |
 | `assets/js/` | 配色切换、目录、图片与表格增强 |
-| `scripts/`、`templates/` | 可选的本地写作辅助工具 |
+| `scripts/` | 本地写作工具；`scripts/templates/` 存放新文章模板 |
 
-模板、脚本和说明文件已在 `_config.yml` 中排除，不作为网站资源发布。未改变远程工作流。
+写作脚本及其模板和说明文件已在 `_config.yml` 中排除，不作为网站资源发布。根目录的索引页保留在原位，确保 Jekyll 路由不变；未改变远程工作流。

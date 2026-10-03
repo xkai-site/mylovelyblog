@@ -21,7 +21,6 @@ defaults:
       layout: post
 exclude:
   - docs
-  - templates
   - scripts
   - README.md
   - node_modules

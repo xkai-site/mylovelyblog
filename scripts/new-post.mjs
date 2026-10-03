@@ -80,7 +80,7 @@ export function createPost(options, root = defaultRoot) {
   const images = safePath(root, `assets/images/${id}`);
   const draft = safePath(root, `_drafts/${id}.md`);
   if (fs.existsSync(images) || fs.existsSync(draft)) throw new Error('草稿或图片目录已存在；不会覆盖。');
-  const template = fs.readFileSync(path.join(root, 'templates/post.md'), 'utf8');
+  const template = fs.readFileSync(path.join(root, 'scripts/templates/post.md'), 'utf8');
   const values = {
     __TITLE_JSON__: JSON.stringify(title), __DATE__: date,
     __CATEGORY_JSON__: JSON.stringify(category), __TAGS_JSON__: JSON.stringify(tags),

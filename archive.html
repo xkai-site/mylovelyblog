@@ -5,7 +5,8 @@ nav: archive
 permalink: /archive/
 ---
 <header class="page-heading">
-  <h1>归档</h1>
+  <p class="section-kicker" lang="en">Archive</p>
+  <h1>归档<span class="heading-period" aria-hidden="true">.</span></h1>
 </header>
 {% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
 {% if years.size > 0 %}

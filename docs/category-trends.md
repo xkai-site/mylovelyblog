@@ -27,4 +27,8 @@
 - 悬停、键盘、触屏点图、点击分类名称和无脚本回退正常；未捕获页面 JavaScript 异常。
 - 分类页深／浅主题 axe WCAG A/AA 扫描未发现违规；人工检查桌面深色分类页及 320px 首页截图。
 
+### Jekyll 3.10 参数兼容性修复
+
+GitHub Pages 实际构建发现：`include` 参数不接受 `category[1]`、`category[0]` 这样的数组下标表达式（LiquidJS 预览未拦截）。首页及分类页均已改为先用 `assign` 取值，再将普通变量传给组件。数组下标仍可正常用于 `assign` 与输出表达式。修复后重新通过上述本地浏览器回归；最终以 GitHub Actions 构建结果为准。
+
 本机没有可用 Ruby / Jekyll，Docker 引擎也未启动，**未执行真实 Jekyll 构建或线上部署**。临时预览不替代现有 GitHub Actions 的最终构建验收；上线后应再次核对分类趋势和文章数量。

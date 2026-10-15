@@ -10,7 +10,9 @@ permalink: /categories/
 <div class="collection-layout" data-collection>
 <nav class="topic-index topic-index--categories" aria-label="分类索引">
   {% for category in categories %}
-    <a id="index-category-{{ category[0] | cgi_escape }}" href="#category-{{ category[0] | cgi_escape | cgi_escape }}" aria-controls="category-{{ category[0] | cgi_escape }}" aria-label="{{ category[0] | escape }}"><span class="category-name">{{ category[0] | escape }}</span>{% include category-trend.html posts=category[1] name=category[0] %}</a>
+    {% assign trend_category_name = category[0] %}
+    {% assign trend_category_posts = category[1] %}
+    <a id="index-category-{{ category[0] | cgi_escape }}" href="#category-{{ category[0] | cgi_escape | cgi_escape }}" aria-controls="category-{{ category[0] | cgi_escape }}" aria-label="{{ category[0] | escape }}"><span class="category-name">{{ category[0] | escape }}</span>{% include category-trend.html posts=trend_category_posts name=trend_category_name %}</a>
   {% endfor %}
   {% if uncategorized.size > 0 %}<a id="index-uncategorized" href="#uncategorized" aria-controls="uncategorized" aria-label="未分类"><span class="category-name">未分类</span>{% include category-trend.html posts=uncategorized name='未分类' %}</a>{% endif %}
 </nav>

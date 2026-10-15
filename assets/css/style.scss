@@ -81,6 +81,16 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .category-index a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--line); padding-block: 12px; color: var(--text); font-size: 14px; text-decoration: none; }
 .category-index a::after { content: "↗"; color: var(--muted); }
 .category-index a:hover, .category-index a:hover::after { color: var(--accent); }
+/* 分类趋势是渐进增强：未运行脚本时保留原有链接与箭头。 */
+.category-index a.category-trend-link, .topic-index--categories a.category-trend-link { align-items: center; }
+.category-index a.category-trend-link::after { display: none; }
+.category-name { min-width: 0; overflow-wrap: anywhere; }
+.category-trend { display: block; flex: 0 0 auto; width: clamp(64px, 42%, 104px); height: 28px; margin-left: auto; color: var(--accent); opacity: .7; }
+.category-trend:hover, .category-trend:focus-visible { opacity: 1; }
+.category-trend svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.category-trend-line { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.category-trend-point { fill: currentColor; stroke: var(--bg); stroke-width: 1; }
+.category-trend-tooltip { position: fixed; z-index: 20; max-width: calc(100vw - 16px); padding: 5px 9px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: 11px/1.6 var(--mono); font-weight: 400; white-space: nowrap; pointer-events: none; box-shadow: 0 3px 12px #0002; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 12px; }
 .tag-list a { color: var(--muted); text-decoration: none; }
 .tag-list a:hover { color: var(--accent); text-decoration: underline; }
@@ -232,6 +242,8 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
   .collection-layout { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
   .topic-index { position: static; max-height: none; overflow: visible; border-top: 0; border-bottom: 1px solid var(--line); padding: 0 0 17px; flex-direction: row; flex-wrap: wrap; gap: 4px 23px; }
   .topic-index a { gap: 8px; border: 0; padding-block: 7px; }
+  .topic-index--categories a { flex: 1 1 160px; min-width: 0; }
+  .topic-index--categories .category-trend { width: 80px; }
   .collection-group > h2 { font-size: 26px; }
   .collection-group .post-list h3 { font-size: 21px; }
   .search-field input { font-size: 16px; }

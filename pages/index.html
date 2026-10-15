@@ -22,9 +22,9 @@ permalink: /
       <h2 id="category-index-title">分类</h2>
       <nav class="category-index" aria-label="文章分类">
         {% for category in sorted_categories %}
-          <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}</a>
+          <a href="{{ '/categories/' | relative_url }}#category-{{ category[0] | cgi_escape | cgi_escape }}" aria-label="{{ category[0] | escape }}"><span class="category-name">{{ category[0] | escape }}</span>{% include category-trend.html posts=category[1] name=category[0] %}</a>
         {% endfor %}
-        {% if uncategorized.size > 0 %}<a href="{{ '/categories/' | relative_url }}#uncategorized">未分类</a>{% endif %}
+        {% if uncategorized.size > 0 %}<a href="{{ '/categories/' | relative_url }}#uncategorized" aria-label="未分类"><span class="category-name">未分类</span>{% include category-trend.html posts=uncategorized name='未分类' %}</a>{% endif %}
       </nav>
     </section>
     {% assign sorted_tags = site.tags | sort %}

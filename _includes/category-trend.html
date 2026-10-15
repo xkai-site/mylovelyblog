@@ -1,0 +1,4 @@
+{%- comment -%}按 Jekyll 解析后的发布日期分月；只输出计数，不暴露文章内容。{%- endcomment -%}
+{%- assign trend_months = include.posts | group_by_exp: 'post', "post.date | date: '%Y-%m'" -%}
+{%- capture trend_counts -%}{ {% for month in trend_months %}{{ month.name | jsonify }}:{{ month.items.size }}{% unless forloop.last %},{% endunless %}{% endfor %} }{%- endcapture -%}
+<span class="category-trend" data-category-trend data-month-counts="{{ trend_counts | escape }}" data-category-name="{{ include.name | escape }}" hidden></span>

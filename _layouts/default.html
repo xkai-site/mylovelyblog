@@ -27,6 +27,12 @@
       } catch (_) { /* 无可用存储时，由 CSS 跟随系统配色。 */ }
     })();
   </script>
+  {% comment %}提前声明跨文档过渡，避免快速导航时因外链样式尚未解析而跳过动画。{% endcomment %}
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition { navigation: auto; }
+    }
+  </style>
   {% comment %}每次构建只用一个资源版本，让浏览器获取本次部署的 CSS／JS。{% endcomment %}
   {% assign asset_version = site.time | date: '%s' %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ asset_version }}">
@@ -38,10 +44,10 @@
   <header class="site-header shell">
     <div class="header-controls">
       <nav class="site-nav" aria-label="主导航">
-        <a href="{{ '/' | relative_url }}"{% if page.nav == 'home' %} aria-current="page"{% endif %}>首页</a>
-        <a href="{{ '/categories/' | relative_url }}"{% if page.nav == 'categories' %} aria-current="page"{% endif %}>分类</a>
-        <a href="{{ '/tags/' | relative_url }}"{% if page.nav == 'tags' %} aria-current="page"{% endif %}>标签</a>
-        <a href="{{ '/archive/' | relative_url }}"{% if page.nav == 'archive' %} aria-current="page"{% endif %}>归档</a>
+        <a href="{{ '/' | relative_url }}"{% if page.nav == 'home' %} aria-current="page"{% endif %}>首页<span class="nav-indicator" aria-hidden="true"></span></a>
+        <a href="{{ '/categories/' | relative_url }}"{% if page.nav == 'categories' %} aria-current="page"{% endif %}>分类<span class="nav-indicator" aria-hidden="true"></span></a>
+        <a href="{{ '/tags/' | relative_url }}"{% if page.nav == 'tags' %} aria-current="page"{% endif %}>标签<span class="nav-indicator" aria-hidden="true"></span></a>
+        <a href="{{ '/archive/' | relative_url }}"{% if page.nav == 'archive' %} aria-current="page"{% endif %}>归档<span class="nav-indicator" aria-hidden="true"></span></a>
       </nav>
       <div id="theme-controls" class="theme-controls" hidden>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式">

@@ -56,9 +56,9 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .header-controls { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 .site-nav { display: flex; gap: 40px; flex-wrap: wrap; }
 .site-nav a { position: relative; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; padding-block: 9px; }
-.site-nav a::after { content: ""; position: absolute; height: 3px; inset: auto 0 -24px; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.nav-indicator { display: none; position: absolute; height: 3px; width: 115%; left: -7.5%; bottom: 2px; background: var(--accent); pointer-events: none; }
 .site-nav a:hover, .site-nav a[aria-current] { color: var(--text); }
-.site-nav a[aria-current]::after { transform: scaleX(1); }
+.site-nav a[aria-current="page"] .nav-indicator { display: block; }
 .theme-controls { display: flex; align-items: center; padding-left: 20px; }
 .theme-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: var(--text); background: transparent; border: 0; border-radius: 0; }
 .theme-toggle:hover { color: var(--accent); }
@@ -224,7 +224,6 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
   .header-controls { gap: 16px; }
   .site-nav { gap: 24px; }
   .site-nav a { font-size: 13px; }
-  .site-nav a::after { bottom: -16px; }
   .theme-controls { padding: 0; }
   .theme-toggle { width: 36px; height: 36px; }
   .journal-layout { grid-template-columns: 1fr; gap: 40px; padding-top: 24px; }
@@ -265,7 +264,15 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 @media (prefers-reduced-motion: no-preference) {
   a, button { transition: color .16s ease, background-color .16s ease, border-color .16s ease; }
   .post-list > li::before { transition: opacity .16s ease; }
-  .site-nav a::after { transition: transform .2s ease; }
+  /* 跨文档共享指示条：浏览器插值位置和尺寸，不重播缩放／淡入动画。
+     保留原生导航、历史记录及服务端 aria-current；旧浏览器正常跳转。 */
+  :root { view-transition-name: none; }
+  .site-header { view-transition-name: site-header; }
+  .site-nav a[aria-current="page"] .nav-indicator { view-transition-name: nav-indicator; }
+  ::view-transition-group(site-header) { animation: none; }
+  ::view-transition-group(nav-indicator) { animation-duration: .3s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  ::view-transition-old(site-header), ::view-transition-old(nav-indicator) { display: none; }
+  ::view-transition-new(site-header), ::view-transition-new(nav-indicator) { animation: none; }
   @keyframes page-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .post-header { animation: page-enter .45s ease-out both; }
 }

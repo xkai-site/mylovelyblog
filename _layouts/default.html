@@ -68,5 +68,21 @@
   {% if page.nav == 'archive' %}<script src="{{ '/assets/js/archive.js' | relative_url }}?v={{ asset_version }}" defer></script>{% endif %}
   {% if page.nav == 'categories' or page.nav == 'tags' %}<script src="{{ '/assets/js/collection.js' | relative_url }}?v={{ asset_version }}" defer></script>{% endif %}
   {% if page.nav == 'home' or page.nav == 'categories' %}<script src="{{ '/assets/js/category-trends.js' | relative_url }}?v={{ asset_version }}" defer></script>{% endif %}
+  {% comment %}只预取主导航 HTML；有悬停／按下意图时才预渲染，提前完成首次页面初始化。
+     浏览器自行按流量、内存和省电设置调度；不支持时仍使用原生导航。{% endcomment %}
+  <script type="speculationrules">
+    {
+      "prefetch": [{
+        "source": "document",
+        "where": { "selector_matches": ".site-nav a:not([aria-current])" },
+        "eagerness": "immediate"
+      }],
+      "prerender": [{
+        "source": "document",
+        "where": { "selector_matches": ".site-nav a:not([aria-current])" },
+        "eagerness": "moderate"
+      }]
+    }
+  </script>
 </body>
 </html>

@@ -107,12 +107,14 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .collection-layout.collection-layout--single { grid-template-columns: minmax(0, 1fr); max-width: 960px; }
 .collection-group { scroll-margin-top: 30px; }
 .collection-group + .collection-group { margin-top: 52px; }
+[data-collection-ready] .collection-group { margin-top: 0; }
 .collection-group > h2 { display: flex; align-items: baseline; gap: 16px; font-size: 28px; font-weight: 700; letter-spacing: -.025em; padding-bottom: 16px; margin: 0; border-bottom: 2px solid var(--strong-line); }
 .collection-group .post-list > li { padding-block: 24px; }
 .collection-group .post-list h3 { font-size: 22px; }
 .topic-index { display: flex; flex-direction: column; border-top: 2px solid var(--accent); padding-top: 8px; position: sticky; top: 28px; max-height: calc(100vh - 56px); overflow-y: auto; }
 .topic-index a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px; }
 .topic-index a:hover { color: var(--accent); }
+[data-collection] .topic-index a[aria-current] { color: var(--accent); font-weight: 600; text-decoration: underline; }
 .archive-search { display: flex; align-items: center; padding-bottom: 24px; }
 .search-field { position: relative; flex: 1; min-width: 0; max-width: 480px; }
 .search-field input { display: block; width: 100%; min-width: 0; padding: 13px 60px 13px 15px; font-size: 14px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-bottom-color: var(--strong-line); border-radius: 0; -webkit-appearance: none; }

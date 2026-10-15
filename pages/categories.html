@@ -7,25 +7,24 @@ permalink: /categories/
 <h1 class="visually-hidden">分类</h1>
 {% assign categories = site.categories | sort %}
 {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
-<div class="collection-layout">
+<div class="collection-layout" data-collection>
 <nav class="topic-index" aria-label="分类索引">
   {% for category in categories %}
-    <a href="#category-{{ category[0] | cgi_escape | cgi_escape }}">{{ category[0] | escape }}</a>
+    <a id="index-category-{{ category[0] | cgi_escape }}" href="#category-{{ category[0] | cgi_escape | cgi_escape }}" aria-controls="category-{{ category[0] | cgi_escape }}">{{ category[0] | escape }}</a>
   {% endfor %}
-  {% if uncategorized.size > 0 %}<a href="#uncategorized">未分类</a>{% endif %}
+  {% if uncategorized.size > 0 %}<a id="index-uncategorized" href="#uncategorized" aria-controls="uncategorized">未分类</a>{% endif %}
 </nav>
 <div>
+<p class="visually-hidden" data-collection-status role="status"></p>
 {% for category in categories %}
   {% assign category_id = category[0] | cgi_escape %}
   {% assign category_posts = category[1] | sort: 'date' | reverse %}
-  <section class="collection-group" id="category-{{ category_id }}" aria-labelledby="heading-category-{{ category_id }}">
-    <h2 id="heading-category-{{ category_id }}">{{ category[0] | escape }}</h2>
+  <section class="collection-group" id="category-{{ category_id }}" aria-labelledby="index-category-{{ category_id }}">
     {% include post-list.html posts=category_posts %}
   </section>
 {% endfor %}
 {% if uncategorized.size > 0 %}
-  <section class="collection-group" id="uncategorized" aria-labelledby="heading-uncategorized">
-    <h2 id="heading-uncategorized">未分类</h2>
+  <section class="collection-group" id="uncategorized" aria-labelledby="index-uncategorized">
     {% include post-list.html posts=uncategorized %}
   </section>
 {% endif %}

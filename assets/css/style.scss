@@ -73,7 +73,7 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .site-footer a:hover { color: var(--accent); }
 .journal-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 64px; padding-top: 36px; }
 .journal-layout > *, .collection-layout > * { min-width: 0; }
-.journal-layout > section { border-top: 2px solid var(--strong-line); }
+.journal-layout > section, [data-collection] > div { border-top: 2px solid var(--strong-line); }
 .index-section { border-top: 2px solid var(--accent); padding-top: 24px; }
 .index-section + .index-section { margin-top: 42px; }
 .index-section h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 700; margin: 0 0 18px; }
@@ -126,14 +126,15 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
 .topic-index a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px; }
 .topic-index a:hover { color: var(--accent); }
 [data-collection] .topic-index a[aria-current] { color: var(--accent); font-weight: 600; text-decoration: none; }
-.archive-search { display: flex; align-items: center; padding-bottom: 24px; }
-.search-field { position: relative; flex: 1; min-width: 0; max-width: 480px; }
-.search-field input { display: block; width: 100%; min-width: 0; padding: 13px 60px 13px 15px; font-size: 14px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-bottom-color: var(--strong-line); border-radius: 0; -webkit-appearance: none; }
-.search-field input::placeholder { color: var(--muted); opacity: 1; }
-.search-field input::-webkit-search-cancel-button { -webkit-appearance: none; }
-.search-field button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--accent); padding: 8px; font-size: 12px; }
+.archive-search { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; padding-bottom: 24px; }
+.archive-search .search-field { position: relative; flex: 0 1 320px; min-width: 0; max-width: 100%; }
+.archive-search .search-icon { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+.archive-search input { display: block; width: 100%; min-width: 0; padding: 10px 48px 10px 28px; font-size: 14px; background: transparent; color: var(--text); border: 0; border-bottom: 1px solid var(--line); border-radius: 0; -webkit-appearance: none; }
+.archive-search input:focus { outline: none; border-bottom-color: var(--accent); }
+.archive-search input::placeholder { color: var(--muted); opacity: 1; }
+.archive-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.archive-search .search-field button { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--accent); padding: 8px; font-size: 12px; }
 .archive-search > p { margin: 0; font-size: 12px; color: var(--muted); white-space: nowrap; }
-.archive-search > p:not(:empty) { margin-left: 16px; }
 .reading-layout { display: grid; grid-template-columns: minmax(0, 820px) minmax(160px, 1fr); gap: 64px; padding-top: 38px; }
 .post { min-width: 0; }
 .back-link { font-size: 12px; color: var(--muted); text-decoration: none; }
@@ -246,7 +247,7 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
   .topic-index--categories .category-trend { width: 80px; }
   .collection-group > h2 { font-size: 26px; }
   .collection-group .post-list h3 { font-size: 21px; }
-  .search-field input { font-size: 16px; }
+  .archive-search input { font-size: 16px; }
   .reading-layout { padding-top: 26px; }
   .post-header { margin-block: 28px; padding-bottom: 24px; }
   .post-header h1 { font-size: 32px; }
@@ -260,8 +261,6 @@ h1, h2, h3, h4 { line-height: 1.35; text-wrap: pretty; }
   .site-nav { gap: 20px; }
   .header-controls { gap: 10px; }
   .journal-index { gap: 20px; }
-  .archive-search { flex-wrap: wrap; gap: 12px; }
-  .archive-search > p:not(:empty) { margin-left: 0; }
 }
 @media (prefers-reduced-motion: no-preference) {
   a, button { transition: color .16s ease, background-color .16s ease, border-color .16s ease; }

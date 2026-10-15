@@ -36,8 +36,10 @@ function relatedImages(file) {
   const config = fs.readFileSync(path.join(root, '_config.yml'), 'utf8');
   const baseurl = config.match(/^baseurl:\s*["']?([^"'\s#]*)/m)?.[1]?.replace(/\/$/, '') ?? '';
   const paths = [];
-  for (const match of content.matchAll(/!\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+[^)]*)?\)/g)) {
-    let url = match[1];
+  // Keep literal spaces in legacy URLs; only a delimited Markdown title ends the path.
+  const inlineImage = /!\[[^\]]*\]\(\s*(?:<([^>\r\n]+)>|([^)\r\n]+?))(?:\s+(?:"[^"\r\n]*"|'[^'\r\n]*'|\([^()\r\n]*\)))?\s*\)/g;
+  for (const match of content.matchAll(inlineImage)) {
+    let url = match[1] ?? match[2];
     if (/^(?:https?:|data:|#)/i.test(url)) continue;
     try { url = decodeURIComponent(url); } catch { /* Keep the original path. */ }
     if (baseurl && url.startsWith(`${baseurl}/`)) url = url.slice(baseurl.length + 1);

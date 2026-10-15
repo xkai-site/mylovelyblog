@@ -51,7 +51,6 @@
     if (collection.getBoundingClientRect().top < 0) collection.scrollIntoView({ block: 'start' });
   });
 
-  collection.setAttribute('data-collection-ready', '');
   window.addEventListener('popstate', syncFromHash);
   window.addEventListener('hashchange', syncFromHash);
   window.addEventListener('pageshow', syncFromHash);

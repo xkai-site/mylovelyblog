@@ -1,4 +1,4 @@
-# Optional local output; publishing still uses the existing GitHub workflow.
+# Local Jekyll output and optional tooling caches.
 _site/
 .sass-cache/
 .jekyll-cache/

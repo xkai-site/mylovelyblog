@@ -19,4 +19,6 @@ When the user supplies source Markdown file paths (or a folder containing them),
    The script stages only the supplied posts and their referenced `assets/` images, commits with `更新[文章标题]` (multiple titles joined by `、`), and pushes `origin main`. It refuses to run off `main`, if the Git index already contains staged changes, or if referenced images are missing. Do not replace this with `git add .`.
 5. Report the created post/image paths and the resulting commit and push outcome. If validation, commit, or push fails, stop and report the exact issue; do not claim publication succeeded.
 
+The publishing script currently rejects some legacy Markdown image URLs containing literal spaces. If that validation fails, stop and report it; do not rename published images, change existing article URLs, or bypass validation to force a push. See `docs/maintenance-report.md` for the retained issue.
+
 Use the repository's conventions in `docs/writing.md` for categories, tags, metadata, and image URLs. Do not alter unrelated files or run a deployment workflow manually; the existing GitHub Actions flow handles deployment after the push.

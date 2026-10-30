@@ -5,9 +5,10 @@ layout: default
   <article class="post" aria-labelledby="post-title">
     <a class="back-link" href="{{ '/' | relative_url }}">← 返回首页</a>
     <header class="post-header">
+      <h1 id="post-title">{{ page.title | escape }}</h1>
+      {% if page.description and page.description != '' %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
       <div class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>
-        <span aria-hidden="true">/</span>
         {% if page.categories.size > 0 %}
           {% assign unique_categories = page.categories | uniq %}
           {% for category in unique_categories %}
@@ -23,8 +24,6 @@ layout: default
           {% for tag in unique_tags %}<a href="{{ '/tags/' | relative_url }}#tag-{{ tag | cgi_escape | cgi_escape }}"># {{ tag | escape }}</a>{% endfor %}
         </nav>
       {% endif %}
-      <h1 id="post-title">{{ page.title | escape }}</h1>
-      {% if page.description and page.description != '' %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
     </header>
     <div class="prose" id="post-body">{{ content }}</div>
     <footer class="post-footer">
@@ -36,9 +35,8 @@ layout: default
   </article>
   <aside class="toc" aria-label="文章目录" hidden>
     <details id="toc-details" open>
-      <summary>本文目录 <span aria-hidden="true">↕</span></summary>
+      <summary>目录</summary>
       <nav id="toc-links" aria-label="章节导航"></nav>
-      <a class="toc-top" href="#post-title">↑ 回到标题</a>
     </details>
   </aside>
 </div>

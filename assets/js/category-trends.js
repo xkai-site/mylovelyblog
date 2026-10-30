@@ -45,7 +45,7 @@
     state.point.setAttribute('cx', point.x);
     state.point.setAttribute('cy', point.y);
     state.point.setAttribute('visibility', 'visible');
-    tooltip.textContent = `${state.months[index]} · ${state.counts[index]} 篇`;
+    tooltip.textContent = `${state.months[index]}，${state.counts[index]} 篇`;
     tooltip.hidden = false;
     state.chart.setAttribute('aria-describedby', tooltip.id);
 

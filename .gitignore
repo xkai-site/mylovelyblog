@@ -6,3 +6,6 @@ _site/
 node_modules/
 .DS_Store
 Thumbs.db
+
+# Local article drafts.
+/_drafts/

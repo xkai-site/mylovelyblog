@@ -6,7 +6,7 @@ permalink: /
 ---
 <div class="journal-layout">
   <section aria-labelledby="latest-title">
-    <h1 id="latest-title" class="visually-hidden">近作</h1>
+    <h1 id="latest-title" class="visually-hidden">最新文章</h1>
     {% if site.posts.size > 0 %}
       {% assign latest_posts = site.posts | slice: 0, 8 %}
       {% include post-list.html posts=latest_posts heading='h2' excerpts=true show_tags=true %}
@@ -15,7 +15,7 @@ permalink: /
       <p class="empty-state">暂无文章。</p>
     {% endif %}
   </section>
-  <aside class="journal-index" aria-label="文集索引">
+  <aside class="journal-index" aria-label="文章索引">
     {% assign sorted_categories = site.categories | sort %}
     {% assign uncategorized = site.posts | where_exp: 'post', 'post.categories.size == 0' %}
     <section class="index-section" aria-labelledby="category-index-title">
